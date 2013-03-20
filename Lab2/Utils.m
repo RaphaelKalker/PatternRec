@@ -29,10 +29,9 @@ classdef Utils
             x = 0:0.1:10;
             y = unifpdf(x, minOfData, maxofData);
             plot(y, 'b');
-
         end
         
-         function grid = CreateGrid(means, datapoints, variances) 
+        function grid = CreateGrid(means, datapoints, variances) 
                 dx = 5; % step size
                 maxY = max(datapoints(:, 2));
                 maxX = max(datapoints(:, 1));
@@ -80,6 +79,19 @@ classdef Utils
                 temp = temp + (data(k,:) - mu)'*(data(k,:) - mu);
             end
             sig = (1/N).*temp;
+        end
+
+        function class = Parzen_Classifier(point, probs)
+            class = -1;
+            pdfA = cell2mat(probs(1));
+            pdfB = cell2mat(probs(2));
+            pdfC = cell2mat(probs(3));
+
+            probA = pdfA(point(1,1), point(1,2))
+            probB = pdfB(point)
+            probC = pdfC(point)
+
+            [~, class] = max([probA probB probC]);
         end
     end
 end
