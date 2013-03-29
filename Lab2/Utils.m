@@ -1,27 +1,30 @@
 classdef Utils
     methods(Static)
         
-        function plotGuass(mu, sigma, dMu, dSigma)
-            figure
-            x = (mu - 4 * sigma) : (sigma / 100) : (mu + 4 * sigma);
-            pdfEst = normpdf(x, mu, sigma);
-            plot(x, pdfEst, 'r');
-            hold on
+        function plotActGuass(dMu, dSigma)
             x = (dMu - 4 * dSigma) : (dSigma / 100) : (dMu + 4 * dSigma);
             pdfAct = normpdf(x, dMu, dSigma);
             plot(x, pdfAct, 'b');
         end
 
-        function plotExp(lam, dLam)
-            figure 
+        function plotEstGuass(mu, sigma)
+            x = (mu - 4 * sigma) : (sigma / 100) : (mu + 4 * sigma);
+            pdfEst = normpdf(x, mu, sigma);
+            plot(x, pdfEst, 'r');
+        end
+
+        function plotActExp(dLam)
             x = 0:0.1:10;
-            expEst = exppdf(x,lam);
-            plot(x, expEst, 'b')
-            hold on
             expAct = exppdf(x,dLam);
             plot(x, expAct, 'r')
         end
         
+        function plotEstExp(lam)
+            x = 0:0.1:10;
+            expEst = exppdf(x,lam);
+            plot(x, expEst, 'b')
+        end
+
         function plotUniform(data)
             figure
             minOfData = min(data);
