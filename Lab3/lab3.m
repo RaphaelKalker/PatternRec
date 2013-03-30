@@ -47,9 +47,29 @@ for k=1:10
 end
 
 % MICD Classifier
-[grid, xVals, yVals] = Utils.CreateGrid(datapoints);
-cont = Utils.GED_Contour(grid, xVals, yVals, means, datapoints, variances);
-confPoints = Utils.MICD_Check(testMeans, testDatapoints, testVariances)
+% [grid, xVals, yVals] = Utils.CreateGrid(datapoints);
+% cont = Utils.GED_Contour(grid, xVals, yVals, means, datapoints, variances);
+% confPoints = Utils.MICD_Check(testMeans, testDatapoints, testVariances)
+
+%-------------------------------------------------------------
+% Part 4 - Image Classification and Segmentation
+%-------------------------------------------------------------
+matrix = multf8;
+cimage = zeros(length(matrix(:,1)), length(matrix(1,:)));
+for j=1:length(matrix(:,1))
+	for k=1:length(matrix(1,:))
+		cimage(j,k) = Utils.GED_Classifier(means, matrix(j,k), variances);
+	end
+end
+
+imagesc(cimage)
+% imagesc(matrix)
+
+	
+
+
+
+
 
 
 
