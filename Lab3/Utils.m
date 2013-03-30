@@ -67,6 +67,10 @@ classdef Utils
                 confPoints(index, class) = confPoints(index, class) + 1;
             end
         end
+        
+        function eD = eucD(p1, p2)
+            eD = sqrt(sum((p1 - p2) .^ 2));
+        end
 
     end
 end
